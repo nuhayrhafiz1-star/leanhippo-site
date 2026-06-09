@@ -1,0 +1,40 @@
+# Lean Hippo Systems & Tech
+
+> Lean Hippo builds connected business systems using automation, databases, dashboards, workflows, and AI intelligence — helping businesses gain control, capture knowledge, improve visibility, and operate with less dependence on people's memory.
+
+Lean Hippo's positioning: operational infrastructure, not an "AI wrapper". Every system keeps humans in authority — automation can remind, draft, route, detect, and summarise, but critical actions stay gated behind human approval, with full auditability.
+
+## Contact
+- Email: contact@leanhippo.io
+- Booking: every page offers a "Book a Discovery Session" flow (Bottleneck, Business Systems, Growth & Marketing, Accounting & Finance, AI Readiness).
+
+## Three wings (one operating company)
+- Business Systems — Available now. The control layer between people, money, customers, and decisions.
+- Marketing — Coming soon. Demand, brand, and growth systems on the same control layer.
+- Accounting Services — Coming soon. Books, compliance, and financial visibility wired into the systems.
+
+## Business Systems — the six organs
+- The Control Room (Visibility): live business dashboard; cash, sales, stock, task visibility; exception alerts; branch/department views; daily & weekly snapshots.
+- The Vault (Money): monthly P&L reports, cash flow tracking, bank reconciliation, expense & purchase approval, debtors & creditors, petty cash & till tracking, financial dashboards, audit history, tax-ready exports.
+- The Switchboard (Customers): multi-channel capture, auto-response where suitable, lead assignment, missed-enquiry alerts, CRM entry & history, follow-up reminders.
+- The Playbook (Knowledge): SOP library, staff checklists, onboarding flows, role instructions, escalation rules, searchable knowledge base.
+- The Supply Line (Procurement): supplier database, price comparison, purchase request flow, approval workflow, reorder prompts, delivery & variance tracking.
+- The Mind (Decisions): ask the business, activity summaries, issue & anomaly detection, drafted responses, suggested next actions, weekly decision briefs.
+
+## System architecture (four layers)
+1. Data Layer — where the business stores what is happening.
+2. Workflow Layer — where routine work moves through defined steps.
+3. Visibility Layer — where management sees what is happening.
+4. AI Intelligence Layer — where the system answers, detects, drafts, and helps decide.
+
+## MIND+
+MIND+ is an AI intelligence layer that comes with every Lean Hippo product and can also be bought standalone. It sees across every connected system, grows as you grow (learning from approvals and decisions), answers in your business's own context (not the open internet), and keeps humans in authority. Included free to evaluate with the Bottleneck Discovery Session.
+
+## How engagement works
+1. Bottleneck Report — diagnose where control is weakest and what to build first.
+2. System Map — decide which organs connect first; design the architecture.
+3. Build & Connect — install the highest-impact system, connect existing tools, train the team.
+
+## Pages
+- / — Landing (hero, three wings, MIND+ overview)
+- /business-systems — Business Systems wing (problem, six organs, financial control, architecture, engagement, integrations, human approval, before/after, booking CTA)

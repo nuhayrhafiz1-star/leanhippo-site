@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://leanhippo.io
+Sitemap: https://leanhippo.io/sitemap.xml
