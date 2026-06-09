@@ -1,4 +1,4 @@
-:HL["/_next/static/chunks/0_6qf_vytglgr.css","style"]
+:HL["/_next/static/chunks/2x6j-1j58j3nz.css","style"]
 :HL["/fonts/klik-light.otf","font",{"crossOrigin":"","type":"font/otf"}]
 :HL["/fonts/klik-regular.otf","font",{"crossOrigin":"","type":"font/otf"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"wNOUnfX4Gf98i8cKhE9Sy"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"ltlZoQwDjfGlG6j9VR5Bo"}
