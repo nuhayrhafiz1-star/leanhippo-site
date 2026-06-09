@@ -28,3 +28,8 @@ Pull the latest build onto the server:
 3. n8n Error Workflow: alerts the owner if processing fails.
 4. Website fallback: if n8n is unreachable, the form auto-opens a pre-filled email so nothing is lost.
 5. UptimeRobot (free): warns the owner if n8n goes down.
+
+## Spreadsheet logbook
+- Google Apps Script web app (owner: nuhayrhafiz1@gmail.com Google Drive).
+- URL baked into the site as NEXT_PUBLIC_BOOKING_LOG_URL.
+- Sheet "Lean Hippo Bookings" gets a row per booking, independent of n8n.
