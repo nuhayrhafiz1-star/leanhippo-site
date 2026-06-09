@@ -1,0 +1,77 @@
+# ============================================================
+# Lean Hippo Systems & Tech — Apache / LiteSpeed config
+# (Hostinger uses LiteSpeed, which honours .htaccess.)
+# Place this file at the web root alongside index.html.
+# Provides: HTTPS redirect, security headers, compression,
+# long-cache for static assets, and a custom 404.
+# ============================================================
+
+# ---- Force HTTPS + canonical (non-www -> as-is; edit if you prefer www) ----
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Redirect http -> https
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ---- Security headers ----
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set X-XSS-Protection "0"
+  # HSTS — only enable once HTTPS is confirmed working for the whole site.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  # Content Security Policy. Allows: self, Google Fonts, and the n8n booking
+  # webhook (booking form POSTs there).
+  # 'unsafe-inline' is required for Next's inline bootstrap + element styles.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://n8n.leanhippo.io; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+  # Don't cache HTML (so content updates show immediately).
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ---- Compression ----
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml image/svg+xml font/otf font/ttf font/woff font/woff2
+</IfModule>
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+# ---- Long cache for fingerprinted/static assets ----
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 6 months"
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType image/svg+xml "access plus 6 months"
+  ExpiresByType image/x-icon "access plus 6 months"
+  ExpiresByType font/otf "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# Next's hashed assets live under /_next/ — cache them hard.
+<IfModule mod_headers.c>
+  <FilesMatch "^_next/static/">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+# ---- Pretty URLs / SPA-style fallback ----
+# trailingSlash export creates /business-systems/index.html, served at
+# /business-systems/. Send unknown paths to the custom 404 page.
+ErrorDocument 404 /404.html
+
+# Block access to dotfiles (except .well-known).
+<IfModule mod_rewrite.c>
+  RewriteRule "(^|/)\.(?!well-known)" - [F]
+</IfModule>
