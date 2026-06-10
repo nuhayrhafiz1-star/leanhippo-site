@@ -10,15 +10,37 @@
           "allowedOrigins": "*"
         }
       },
-      "id": "12df6d9c-4dbb-4d07-9081-1e91d94ef861",
+      "id": "f6223bbe-f966-4129-a646-f8fda7e5315d",
       "name": "Booking Webhook",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        220,
+        200,
         320
       ],
-      "webhookId": "42ed1291-e7c6-4fdb-8982-4d188665d79e"
+      "webhookId": "e2f132ef-edfc-47f4-8ed1-1db288220766"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://leanhippo.io/logos/leanhippo-white.png",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "logo"
+            }
+          }
+        }
+      },
+      "id": "00b6bde4-b496-437c-9dab-b10dc6e409f2",
+      "name": "Get logo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        400,
+        320
+      ]
     },
     {
       "parameters": {
@@ -26,40 +48,64 @@
         "toEmail": "={{ $('Booking Webhook').item.json.body.email }}",
         "subject": "We\u2019ve received your Lean Hippo Discovery Session request",
         "emailFormat": "html",
-        "html": "=<body style=\"margin:0;padding:0;background:#F4F4F2;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#F4F4F2;padding:32px 12px;\"><tr><td align=\"center\"><table role=\"presentation\" width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:600px;width:100%;background:#FFFFFF;border-radius:14px;overflow:hidden;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight:300;box-shadow:0 1px 3px rgba(5,5,5,0.08);\"><tr><td style=\"background:#050505;padding:28px 40px;text-align:center;\"><img src=\"https://leanhippo.io/logos/leanhippo-white.png\" alt=\"Lean Hippo\" width=\"150\" style=\"display:inline-block;max-width:150px;height:auto;\"></td></tr><tr><td style=\"padding:36px 40px 8px;\"><p style=\"margin:0 0 8px;font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:#1F5EFF;\">Request received</p><h1 style=\"margin:0 0 16px;font-size:24px;line-height:1.25;font-weight:300;letter-spacing:-.01em;color:#1C1F24;\">Thank you, {{ ($('Booking Webhook').item.json.body.name || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</h1><p style=\"margin:0 0 14px;font-size:15px;line-height:24px;font-weight:300;color:#1C1F24;\">We\u2019ve received your request for a Lean Hippo Discovery Session. Our team will review the details below and get in touch shortly to confirm your time. No payment or commitment is needed at this stage.</p></td></tr><tr><td style=\"padding:4px 40px 0;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#F7F9FC;border:1px solid #E6E8EC;border-radius:10px;padding:8px 18px;\"><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Session(s)</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.sessionsText || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Preferred date</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.date || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Availability</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.availability || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Business</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.business || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr></table></td></tr><tr><td style=\"padding:18px 40px 4px;\"><p style=\"margin:0 0 4px;font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:#1F5EFF;\">Focus for each session</p></td></tr><tr><td style=\"padding:0 40px 8px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#F7F9FC;border:1px solid #E6E8EC;border-radius:10px;padding:6px 18px;\">{{ $('Booking Webhook').item.json.body.notesHtml }}</table></td></tr><tr><td style=\"padding:14px 40px 36px;\"><p style=\"margin:0;font-size:15px;line-height:24px;font-weight:300;color:#1C1F24;\">If anything needs changing, just reply to this email \u2014 it reaches us directly.</p></td></tr><tr><td style=\"padding:28px 40px;border-top:1px solid #E6E8EC;\"><p style=\"margin:0;font-size:12px;line-height:18px;font-weight:300;color:#6F7782;\">Lean Hippo &middot; Operational clarity, systems &amp; growth<br><a href=\"mailto:contact@leanhippo.io\" style=\"color:#1F5EFF;text-decoration:none;\">contact@leanhippo.io</a> &middot; <a href=\"https://leanhippo.io\" style=\"color:#1F5EFF;text-decoration:none;\">leanhippo.io</a></p></td></tr></table></td></tr></table></body>",
+        "html": "=<body style=\"margin:0;padding:0;background:#F4F4F2;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#F4F4F2;padding:32px 12px;\"><tr><td align=\"center\"><table role=\"presentation\" width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:600px;width:100%;background:#FFFFFF;border-radius:14px;overflow:hidden;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight:300;box-shadow:0 1px 3px rgba(5,5,5,0.08);\"><tr><td style=\"background:#050505;padding:28px 40px;text-align:center;\"><img src=\"cid:logo\" alt=\"Lean Hippo\" width=\"150\" style=\"display:inline-block;max-width:150px;height:auto;\"></td></tr><tr><td style=\"padding:36px 40px 8px;\"><p style=\"margin:0 0 8px;font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:#1F5EFF;\">Request received</p><h1 style=\"margin:0 0 16px;font-size:24px;line-height:1.25;font-weight:300;letter-spacing:-.01em;color:#1C1F24;\">Thank you, {{ ($('Booking Webhook').item.json.body.name || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</h1><p style=\"margin:0 0 14px;font-size:15px;line-height:24px;font-weight:300;color:#1C1F24;\">We\u2019ve received your request for a Lean Hippo Discovery Session. Our team will review the details below and get in touch shortly to confirm your time. No payment or commitment is needed at this stage.</p></td></tr><tr><td style=\"padding:4px 40px 0;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#F7F9FC;border:1px solid #E6E8EC;border-radius:10px;padding:8px 18px;\"><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Session(s)</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.sessionsText || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Preferred date</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.date || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Availability</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.availability || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Business</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.business || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr></table></td></tr><tr><td style=\"padding:18px 40px 4px;\"><p style=\"margin:0 0 4px;font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:#1F5EFF;\">Focus for each session</p></td></tr><tr><td style=\"padding:0 40px 8px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#F7F9FC;border:1px solid #E6E8EC;border-radius:10px;padding:6px 18px;\">{{ $('Booking Webhook').item.json.body.notesHtml }}</table></td></tr><tr><td style=\"padding:14px 40px 36px;\"><p style=\"margin:0;font-size:15px;line-height:24px;font-weight:300;color:#1C1F24;\">If anything needs changing, just reply to this email \u2014 it reaches us directly.</p></td></tr><tr><td style=\"padding:28px 40px;border-top:1px solid #E6E8EC;\"><p style=\"margin:0;font-size:12px;line-height:18px;font-weight:300;color:#6F7782;\">Lean Hippo &middot; Operational clarity, systems &amp; growth<br><a href=\"mailto:contact@leanhippo.io\" style=\"color:#1F5EFF;text-decoration:none;\">contact@leanhippo.io</a> &middot; <a href=\"https://leanhippo.io\" style=\"color:#1F5EFF;text-decoration:none;\">leanhippo.io</a></p></td></tr></table></td></tr></table></body>",
         "options": {
           "appendAttribution": false,
-          "replyTo": "contact@leanhippo.io"
+          "replyTo": "contact@leanhippo.io",
+          "attachments": "logo"
         }
       },
-      "id": "330ec705-175d-4761-9d05-60809ff5377e",
+      "id": "847d29e4-2905-40f9-98a0-22a2d956ce71",
       "name": "Confirm to client",
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
       "position": [
-        480,
-        220
+        620,
+        320
       ]
     },
     {
       "parameters": {
-        "fromEmail": "Lean Hippo Website <contact@leanhippo.io>",
+        "method": "GET",
+        "url": "https://leanhippo.io/logos/leanhippo-white.png",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "logo"
+            }
+          }
+        }
+      },
+      "id": "9632962f-895b-4717-8780-4e8580859591",
+      "name": "Get logo for alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        840,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "Lean Hippo <contact@leanhippo.io>",
         "toEmail": "contact@leanhippo.io",
         "subject": "={{ $('Booking Webhook').item.json.body.subject }}",
         "emailFormat": "html",
-        "html": "=<body style=\"margin:0;padding:0;background:#F4F4F2;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#F4F4F2;padding:32px 12px;\"><tr><td align=\"center\"><table role=\"presentation\" width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:600px;width:100%;background:#FFFFFF;border-radius:14px;overflow:hidden;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight:300;box-shadow:0 1px 3px rgba(5,5,5,0.08);\"><tr><td style=\"background:#050505;padding:28px 40px;text-align:center;\"><img src=\"https://leanhippo.io/logos/leanhippo-white.png\" alt=\"Lean Hippo\" width=\"150\" style=\"display:inline-block;max-width:150px;height:auto;\"></td></tr><tr><td style=\"padding:36px 40px 4px;\"><p style=\"margin:0 0 8px;font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:#1F5EFF;\">New booking</p><h1 style=\"margin:0 0 16px;font-size:22px;line-height:1.25;font-weight:300;letter-spacing:-.01em;color:#1C1F24;\">Discovery Session request</h1><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:1px solid #E6E8EC;border-radius:10px;padding:8px 18px;\"><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Name</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.name || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Business</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.business || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Email</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.email || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Phone</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.phone || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Country</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.country || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Session(s)</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.sessionsText || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Preferred date</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.date || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Availability</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.availability || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr></table></td></tr><tr><td style=\"padding:18px 40px 4px;\"><p style=\"margin:0 0 4px;font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:#1F5EFF;\">Focus for each session</p></td></tr><tr><td style=\"padding:0 40px 8px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#F7F9FC;border:1px solid #E6E8EC;border-radius:10px;padding:6px 18px;\">{{ $('Booking Webhook').item.json.body.notesHtml }}</table></td></tr><tr><td style=\"padding:6px 40px 34px;\"><p style=\"margin:0;font-size:13px;font-weight:300;color:#6F7782;\">Reply to this email to respond directly to {{ ($('Booking Webhook').item.json.body.name || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}.</p></td></tr><tr><td style=\"padding:28px 40px;border-top:1px solid #E6E8EC;\"><p style=\"margin:0;font-size:12px;line-height:18px;font-weight:300;color:#6F7782;\">Lean Hippo &middot; Operational clarity, systems &amp; growth<br><a href=\"mailto:contact@leanhippo.io\" style=\"color:#1F5EFF;text-decoration:none;\">contact@leanhippo.io</a> &middot; <a href=\"https://leanhippo.io\" style=\"color:#1F5EFF;text-decoration:none;\">leanhippo.io</a></p></td></tr></table></td></tr></table></body>",
+        "html": "=<body style=\"margin:0;padding:0;background:#F4F4F2;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#F4F4F2;padding:32px 12px;\"><tr><td align=\"center\"><table role=\"presentation\" width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:600px;width:100%;background:#FFFFFF;border-radius:14px;overflow:hidden;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight:300;box-shadow:0 1px 3px rgba(5,5,5,0.08);\"><tr><td style=\"background:#050505;padding:28px 40px;text-align:center;\"><img src=\"cid:logo\" alt=\"Lean Hippo\" width=\"150\" style=\"display:inline-block;max-width:150px;height:auto;\"></td></tr><tr><td style=\"padding:36px 40px 4px;\"><p style=\"margin:0 0 8px;font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:#1F5EFF;\">New booking</p><h1 style=\"margin:0 0 16px;font-size:22px;line-height:1.25;font-weight:300;letter-spacing:-.01em;color:#1C1F24;\">Discovery Session request</h1><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:1px solid #E6E8EC;border-radius:10px;padding:8px 18px;\"><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Name</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.name || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Business</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.business || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Email</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.email || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Phone</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.phone || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Country</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.country || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Session(s)</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.sessionsText || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Preferred date</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.date || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Availability</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.availability || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr></table></td></tr><tr><td style=\"padding:18px 40px 4px;\"><p style=\"margin:0 0 4px;font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:#1F5EFF;\">Focus for each session</p></td></tr><tr><td style=\"padding:0 40px 8px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#F7F9FC;border:1px solid #E6E8EC;border-radius:10px;padding:6px 18px;\">{{ $('Booking Webhook').item.json.body.notesHtml }}</table></td></tr><tr><td style=\"padding:6px 40px 34px;\"><p style=\"margin:0;font-size:13px;font-weight:300;color:#6F7782;\">Reply to this email to respond directly to {{ ($('Booking Webhook').item.json.body.name || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}.</p></td></tr><tr><td style=\"padding:28px 40px;border-top:1px solid #E6E8EC;\"><p style=\"margin:0;font-size:12px;line-height:18px;font-weight:300;color:#6F7782;\">Lean Hippo &middot; Operational clarity, systems &amp; growth<br><a href=\"mailto:contact@leanhippo.io\" style=\"color:#1F5EFF;text-decoration:none;\">contact@leanhippo.io</a> &middot; <a href=\"https://leanhippo.io\" style=\"color:#1F5EFF;text-decoration:none;\">leanhippo.io</a></p></td></tr></table></td></tr></table></body>",
         "options": {
           "appendAttribution": false,
-          "replyTo": "={{ $('Booking Webhook').item.json.body.email }}"
+          "replyTo": "={{ $('Booking Webhook').item.json.body.email }}",
+          "attachments": "logo"
         }
       },
-      "id": "0b64986d-e48b-4bca-882d-cd8e9dc8327f",
+      "id": "fff507ab-99b4-4cd4-8cd2-6c9dacd051fe",
       "name": "Alert business",
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
       "position": [
-        740,
-        220
+        1060,
+        320
       ]
     },
     {
@@ -68,18 +114,29 @@
         "responseBody": "{ \"success\": true }",
         "options": {}
       },
-      "id": "dbd39a6f-064b-451a-b28b-e34973b9b8d7",
+      "id": "342ee976-ddec-44af-8858-3cb651f953bf",
       "name": "Respond success",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        1000,
+        1280,
         320
       ]
     }
   ],
   "connections": {
     "Booking Webhook": {
+      "main": [
+        [
+          {
+            "node": "Get logo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get logo": {
       "main": [
         [
           {
@@ -91,6 +148,17 @@
       ]
     },
     "Confirm to client": {
+      "main": [
+        [
+          {
+            "node": "Get logo for alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get logo for alert": {
       "main": [
         [
           {
