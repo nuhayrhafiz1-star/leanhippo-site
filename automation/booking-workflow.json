@@ -10,7 +10,7 @@
           "allowedOrigins": "*"
         }
       },
-      "id": "f6223bbe-f966-4129-a646-f8fda7e5315d",
+      "id": "7fda6a63-ce99-4beb-8964-7e7f8ce236a6",
       "name": "Booking Webhook",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
@@ -18,7 +18,7 @@
         200,
         320
       ],
-      "webhookId": "e2f132ef-edfc-47f4-8ed1-1db288220766"
+      "webhookId": "81b11ee9-d42b-4497-a28a-f3d3a0036d03"
     },
     {
       "parameters": {
@@ -33,7 +33,7 @@
           }
         }
       },
-      "id": "00b6bde4-b496-437c-9dab-b10dc6e409f2",
+      "id": "e7d2106e-1303-4726-ad2f-91133d010cbb",
       "name": "Get logo",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
@@ -55,7 +55,7 @@
           "attachments": "logo"
         }
       },
-      "id": "847d29e4-2905-40f9-98a0-22a2d956ce71",
+      "id": "6b4dbccb-3a66-4580-8636-39cb031af8ee",
       "name": "Confirm to client",
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
@@ -77,7 +77,7 @@
           }
         }
       },
-      "id": "9632962f-895b-4717-8780-4e8580859591",
+      "id": "a998024c-77b0-4ffb-8999-29d20fd93cdf",
       "name": "Get logo for alert",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
@@ -92,14 +92,14 @@
         "toEmail": "contact@leanhippo.io",
         "subject": "={{ $('Booking Webhook').item.json.body.subject }}",
         "emailFormat": "html",
-        "html": "=<body style=\"margin:0;padding:0;background:#F4F4F2;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#F4F4F2;padding:32px 12px;\"><tr><td align=\"center\"><table role=\"presentation\" width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:600px;width:100%;background:#FFFFFF;border-radius:14px;overflow:hidden;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight:300;box-shadow:0 1px 3px rgba(5,5,5,0.08);\"><tr><td style=\"background:#050505;padding:28px 40px;text-align:center;\"><img src=\"cid:logo\" alt=\"Lean Hippo\" width=\"150\" style=\"display:inline-block;max-width:150px;height:auto;\"></td></tr><tr><td style=\"padding:36px 40px 4px;\"><p style=\"margin:0 0 8px;font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:#1F5EFF;\">New booking</p><h1 style=\"margin:0 0 16px;font-size:22px;line-height:1.25;font-weight:300;letter-spacing:-.01em;color:#1C1F24;\">Discovery Session request</h1><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:1px solid #E6E8EC;border-radius:10px;padding:8px 18px;\"><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Name</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.name || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Business</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.business || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Email</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.email || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Phone</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.phone || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Country</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.country || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Session(s)</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.sessionsText || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Preferred date</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.date || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Availability</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.availability || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr></table></td></tr><tr><td style=\"padding:18px 40px 4px;\"><p style=\"margin:0 0 4px;font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:#1F5EFF;\">Focus for each session</p></td></tr><tr><td style=\"padding:0 40px 8px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#F7F9FC;border:1px solid #E6E8EC;border-radius:10px;padding:6px 18px;\">{{ $('Booking Webhook').item.json.body.notesHtml }}</table></td></tr><tr><td style=\"padding:6px 40px 34px;\"><p style=\"margin:0;font-size:13px;font-weight:300;color:#6F7782;\">Reply to this email to respond directly to {{ ($('Booking Webhook').item.json.body.name || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}.</p></td></tr><tr><td style=\"padding:28px 40px;border-top:1px solid #E6E8EC;\"><p style=\"margin:0;font-size:12px;line-height:18px;font-weight:300;color:#6F7782;\">Lean Hippo &middot; Operational clarity, systems &amp; growth<br><a href=\"mailto:contact@leanhippo.io\" style=\"color:#1F5EFF;text-decoration:none;\">contact@leanhippo.io</a> &middot; <a href=\"https://leanhippo.io\" style=\"color:#1F5EFF;text-decoration:none;\">leanhippo.io</a></p></td></tr></table></td></tr></table></body>",
+        "html": "=<body style=\"margin:0;padding:0;background:#F4F4F2;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#F4F4F2;padding:32px 12px;\"><tr><td align=\"center\"><table role=\"presentation\" width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:600px;width:100%;background:#FFFFFF;border-radius:14px;overflow:hidden;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight:300;box-shadow:0 1px 3px rgba(5,5,5,0.08);\"><tr><td style=\"background:#050505;padding:28px 40px;text-align:center;\"><img src=\"cid:logo\" alt=\"Lean Hippo\" width=\"150\" style=\"display:inline-block;max-width:150px;height:auto;\"></td></tr><tr><td style=\"padding:36px 40px 4px;\"><p style=\"margin:0 0 8px;font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:#1F5EFF;\">New booking</p><h1 style=\"margin:0 0 16px;font-size:22px;line-height:1.25;font-weight:300;letter-spacing:-.01em;color:#1C1F24;\">Discovery Session request</h1><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:1px solid #E6E8EC;border-radius:10px;padding:8px 18px;\"><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Name</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.name || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Business</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.business || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Type of business</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.businessType || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Website</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.website || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Email</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.email || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Phone</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.phone || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Country</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.country || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Session(s)</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.sessionsText || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Preferred date</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.date || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:10px 0;font-size:13px;font-weight:300;color:#6F7782;width:160px;vertical-align:top;\">Availability</td><td style=\"padding:10px 0;font-size:14px;font-weight:400;color:#1C1F24;vertical-align:top;\">{{ ($('Booking Webhook').item.json.body.availability || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr></table></td></tr><tr><td style=\"padding:18px 40px 4px;\"><p style=\"margin:0 0 4px;font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:#1F5EFF;\">Focus for each session</p></td></tr><tr><td style=\"padding:0 40px 8px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#F7F9FC;border:1px solid #E6E8EC;border-radius:10px;padding:6px 18px;\">{{ $('Booking Webhook').item.json.body.notesHtml }}</table></td></tr><tr><td style=\"padding:6px 40px 34px;\"><p style=\"margin:0;font-size:13px;font-weight:300;color:#6F7782;\">Reply to this email to respond directly to {{ ($('Booking Webhook').item.json.body.name || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}.</p></td></tr><tr><td style=\"padding:28px 40px;border-top:1px solid #E6E8EC;\"><p style=\"margin:0;font-size:12px;line-height:18px;font-weight:300;color:#6F7782;\">Lean Hippo &middot; Operational clarity, systems &amp; growth<br><a href=\"mailto:contact@leanhippo.io\" style=\"color:#1F5EFF;text-decoration:none;\">contact@leanhippo.io</a> &middot; <a href=\"https://leanhippo.io\" style=\"color:#1F5EFF;text-decoration:none;\">leanhippo.io</a></p></td></tr></table></td></tr></table></body>",
         "options": {
           "appendAttribution": false,
           "replyTo": "={{ $('Booking Webhook').item.json.body.email }}",
           "attachments": "logo"
         }
       },
-      "id": "fff507ab-99b4-4cd4-8cd2-6c9dacd051fe",
+      "id": "55f10f44-ce14-4a8f-88eb-03b7f432f784",
       "name": "Alert business",
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
@@ -114,7 +114,7 @@
         "responseBody": "{ \"success\": true }",
         "options": {}
       },
-      "id": "342ee976-ddec-44af-8858-3cb651f953bf",
+      "id": "37e1c859-8de3-41d0-8a6d-05bde93c33a1",
       "name": "Respond success",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
